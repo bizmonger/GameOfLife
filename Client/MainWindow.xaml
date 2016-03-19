@@ -1,0 +1,85 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Client;assembly=Client"
+        Background="Black"
+        Title="Game of Life" Height="450" Width="500">
+
+    <Window.DataContext>
+        <local:ViewModel />
+    </Window.DataContext>
+
+    <Window.Resources>
+        <local:StateToBrushConverter x:Key="StateToBrushConverter" />
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Grid.Row="0" Grid.Column="0" Fill="{Binding Cells[0], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="0" Grid.Column="1" Fill="{Binding Cells[1], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="0" Grid.Column="2" Fill="{Binding Cells[2], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="0" Grid.Column="3" Fill="{Binding Cells[3], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="0" Grid.Column="4" Fill="{Binding Cells[4], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="0" Grid.Column="5" Fill="{Binding Cells[5], Converter={StaticResource StateToBrushConverter}}" />
+        
+        <Rectangle Grid.Row="1" Grid.Column="0" Fill="{Binding Cells[6], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="1" Grid.Column="1" Fill="{Binding Cells[7], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="1" Grid.Column="2" Fill="{Binding Cells[8], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="1" Grid.Column="3" Fill="{Binding Cells[9], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="1" Grid.Column="4" Fill="{Binding Cells[10], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="1" Grid.Column="5" Fill="{Binding Cells[11], Converter={StaticResource StateToBrushConverter}}" />
+        
+        <Rectangle Grid.Row="2" Grid.Column="0" Fill="{Binding Cells[12], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="2" Grid.Column="1" Fill="{Binding Cells[13], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="2" Grid.Column="2" Fill="{Binding Cells[14], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="2" Grid.Column="3" Fill="{Binding Cells[15], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="2" Grid.Column="4" Fill="{Binding Cells[16], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="2" Grid.Column="5" Fill="{Binding Cells[17], Converter={StaticResource StateToBrushConverter}}" />
+
+        <Rectangle Grid.Row="3" Grid.Column="0" Fill="{Binding Cells[18], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="3" Grid.Column="1" Fill="{Binding Cells[19], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="3" Grid.Column="2" Fill="{Binding Cells[20], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="3" Grid.Column="3" Fill="{Binding Cells[21], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="3" Grid.Column="4" Fill="{Binding Cells[22], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="3" Grid.Column="5" Fill="{Binding Cells[23], Converter={StaticResource StateToBrushConverter}}" />
+
+        <Rectangle Grid.Row="4" Grid.Column="0" Fill="{Binding Cells[24], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="4" Grid.Column="1" Fill="{Binding Cells[25], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="4" Grid.Column="2" Fill="{Binding Cells[26], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="4" Grid.Column="3" Fill="{Binding Cells[27], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="4" Grid.Column="4" Fill="{Binding Cells[28], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="4" Grid.Column="5" Fill="{Binding Cells[29], Converter={StaticResource StateToBrushConverter}}" />
+
+        <Rectangle Grid.Row="5" Grid.Column="0" Fill="{Binding Cells[30], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="5" Grid.Column="1" Fill="{Binding Cells[31], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="5" Grid.Column="2" Fill="{Binding Cells[32], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="5" Grid.Column="3" Fill="{Binding Cells[33], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="5" Grid.Column="4" Fill="{Binding Cells[34], Converter={StaticResource StateToBrushConverter}}" />
+        <Rectangle Grid.Row="5" Grid.Column="5" Fill="{Binding Cells[35], Converter={StaticResource StateToBrushConverter}}" />
+
+
+        <Button Grid.Row="6" Grid.Column="1" Content="Go!" Command="{Binding Play}" />
+    </Grid>
+
+</Window>
