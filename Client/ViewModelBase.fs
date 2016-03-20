@@ -19,4 +19,5 @@ type ViewModelBase () =
         propertyChanged.Trigger(this,PropertyChangedEventArgs(propertyName))
 
     member this.NotifyPropertyChanged quotation = 
-        quotation |> getPropertyName |> this.NotifyPropertyChanged
+        quotation |> getPropertyName 
+                  |> this.NotifyPropertyChanged

@@ -57,8 +57,8 @@
     <Compile Include="StateToBrushConverter.fs" />
     <Resource Include="MainWindow.xaml" />
     <Resource Include="App.xaml" />
-    <Compile Include="ViewModelBase.fs" />
     <Compile Include="DelegateCommand.fs" />
+    <Compile Include="ViewModelBase.fs" />
     <Compile Include="ViewModel.fs" />
     <Content Include="App.config" />
     <Compile Include="App.fs" />

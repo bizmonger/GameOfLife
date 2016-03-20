@@ -7,7 +7,7 @@ open Model
 open System
 open System.Windows.Input
 
-type ViewModel() as this =
+type ViewModel() as self =
     inherit ViewModelBase()
 
     let rowCount = 6
@@ -21,16 +21,20 @@ type ViewModel() as this =
                               |> Seq.toList
     let cycleHandler _ = 
 
-        this.Cells <- grid |> cycleThroughCells
+        self.Items <- grid |> cycleThroughCells
                            |> Map.toSeq
                            |> Seq.map snd
                            |> Seq.toList
-    member this.Play =
+
+    member self.Play =
         DelegateCommand ((fun _ -> let timer = createTimer 500 cycleHandler
                                    do while true do
                                       do Async.RunSynchronously timer), fun _ -> true) :> ICommand
-    member this.Cells
+    member self.N = rowCount
+
+    member self.Items
         with get() = _cells 
         and set(value) =
             _cells <- value
-            base.NotifyPropertyChanged(<@ this.Cells @>)
+
+            base.NotifyPropertyChanged(<@self.Items@>)
