@@ -6,6 +6,18 @@ type Cell = { X:int; Y:int; State:State }
 type Response = | Die
                 | Survive
                 | Resurect
+
+let (|Same|Different|) (cell1, cell2) =
+
+    if cell1.X <> cell2.X || cell1.Y <> cell2.Y 
+    then Different
+    else Same
+
+let (|BothPositive|NotBothPositive|) (v1, v2) =
+
+    if v1 >= 0 && v2 >= 0 
+    then BothPositive
+    else NotBothPositive
     
 let isNeighbor cell1 cell2 =
 
@@ -15,16 +27,14 @@ let isNeighbor cell1 cell2 =
         | _     -> false
 
     let isValueNeighbor v1 v2 =
-        match v1 >= 0
-          &&  v2 >= 0 with
-        | true  -> isAbsNeighbor v1 v2
-        | _     -> isAbsNeighbor v2 v1
+        match v1, v2 with
+        | BothPositive    -> isAbsNeighbor v1 v2
+        | NotBothPositive -> isAbsNeighbor v2 v1
 
-    match cell1.X <> cell2.X
-      ||  cell1.Y <> cell2.Y with
-    | true ->   isValueNeighbor cell1.X cell2.X
-             && isValueNeighbor cell1.Y cell2.Y
-    | _    -> false
+    match (cell1,cell2) with
+    | Different -> isValueNeighbor cell1.X cell2.X
+                && isValueNeighbor cell1.Y cell2.Y
+    | Same      -> false
 
 let createGrid rowCount = 
 

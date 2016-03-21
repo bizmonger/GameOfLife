@@ -37,4 +37,4 @@ type ViewModel() as self =
         and set(value) =
             _cells <- value
 
-            base.NotifyPropertyChanged(<@self.Items@>)
+            base.NotifyPropertyChanged(<@ self.Items @>)
