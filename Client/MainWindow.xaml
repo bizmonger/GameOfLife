@@ -15,6 +15,34 @@
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Content="Go!" Command="{Binding Play}"  Margin="5"  HorizontalAlignment="Right" />
+        <!--<TextBlock Grid.Row="0" Text="{Binding Count}"  Margin="5" HorizontalAlignment="Left"></TextBlock>-->
+        <ListBox Grid.Row="1" Margin="2" ItemsSource="{Binding Cells}" IsEnabled="False"
+            HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="{Binding N}" Columns="{Binding N}"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Rectangle Stretch="Fill" Fill="{Binding Converter={StaticResource StateToBrushConverter}}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="Padding" Value="0" />
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+    </Grid>
+
+    <!--<Grid>
+        <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
@@ -33,6 +61,6 @@
         </ListBox>
 
         <Button Grid.Row="6" Grid.Column="1" Content="Go!" Command="{Binding Play}" />
-    </Grid>
+    </Grid>-->
 
 </Window>
