@@ -26,19 +26,13 @@ type ViewModel() as self =
                                                        |> Map.toSeq
                                                        |> Seq.map snd
                                                        |> Seq.toList )
-
     let change _ = 
 
-        async
-            {
-                while true do
+        async { while true do
                     do! Async.Sleep 500
-                    cycleHandler()
-            }
-        |> Async.Start
+                    cycleHandler() } |> Async.Start
 
     member self.Play = DelegateCommand (change, fun _ -> true) :> ICommand
-
     member self.N = rowCount
 
     member self.Cells

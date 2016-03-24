@@ -11,6 +11,8 @@ let ``cell can't have more than eight neighbors`` () =
 [<Fact>]
 let ``number of cells in grid equals rowcount squared`` () =
     Check.QuickThrowOnFailure <| 
-            fun rowCount -> rowCount >= 0 ==> (rowCount |> createGrid
-                                                        |> Map.toList
-                                                        |> List.length = rowCount * rowCount)
+        fun rowCount -> 
+            rowCount >= 0 ==> 
+            (rowCount |> createGrid
+                       |> Map.toList
+                       |> List.length = rowCount * rowCount)
