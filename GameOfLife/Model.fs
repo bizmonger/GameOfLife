@@ -7,11 +7,11 @@ type Response = | Die
                 | Survive
                 | Resurect
 
-let (|Same|Different|) (cell1, cell2) =
+let (|IsEqual|IsNotEqual|) (cell1, cell2) =
 
     if cell1.X <> cell2.X || cell1.Y <> cell2.Y 
-    then Different
-    else Same
+    then IsNotEqual
+    else IsEqual
 
 let (|BothPositive|NotBothPositive|) (v1, v2) =
 
@@ -32,9 +32,9 @@ let isNeighbor cell1 cell2 =
         | NotBothPositive -> isAbsNeighbor v2 v1
 
     match (cell1,cell2) with
-    | Different -> isValueNeighbor cell1.X cell2.X
-                && isValueNeighbor cell1.Y cell2.Y
-    | Same      -> false
+    | IsNotEqual -> isValueNeighbor cell1.X cell2.X
+                 && isValueNeighbor cell1.Y cell2.Y
+    | IsEqual    -> false
 
 let createGrid rowCount = 
 

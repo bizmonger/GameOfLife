@@ -1,18 +1,27 @@
 ﻿module PropertyTests
 
 open FsCheck
-open Xunit
+open FsCheck.Xunit
 open Model
 
-[<Fact>]
+[<Xunit.Fact>]
 let ``cell can't have more than eight neighbors`` () = 
     Check.QuickThrowOnFailure <| fun xy -> xy |> getNeighbors
                                               |> List.length < 9
-[<Fact>]
+[<Property(QuietOnSuccess = true)>]
 let ``number of cells in grid equals rowcount squared`` () =
-    Check.QuickThrowOnFailure <| 
-        fun rowCount -> 
-            rowCount >= 0 ==> 
-            (rowCount |> createGrid
-                       |> Map.toList
-                       |> List.length = rowCount * rowCount)
+    let values = Arb.generate<int> |> Gen.map (fun v -> v > 0) 
+                                   |> Arb.fromGen
+
+    Prop.forAll values <| fun number ->
+        
+        // Setup
+        let rowCount = 3
+
+        // Test
+        let actual = rowCount |> createGrid
+                              |> Seq.length
+
+        // Verify
+        let expected = rowCount * rowCount
+        actual = expected
