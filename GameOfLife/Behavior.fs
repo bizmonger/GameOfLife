@@ -1,4 +1,4 @@
-﻿module Behavior
+﻿module Functions
 
 open Types
 open ActivePatterns
