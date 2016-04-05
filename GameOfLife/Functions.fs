@@ -73,7 +73,9 @@ let setReaction coordinate grid:Map<(int * int), Cell> =
     | ShouldLive -> grid |> setLive coordinate
     | NoResponse -> grid
 
-let getCells = Map.toSeq >> Seq.map snd >> Seq.toList
+let getCells grid = grid |> Map.toSeq 
+                         |> Seq.map snd 
+                         |> Seq.toList
 
 let updateCells (grid:Map<(int * int), Cell>) =
 
