@@ -1,23 +1,7 @@
-﻿module Model
+﻿module Behavior
 
-type State = Alive | Dead
-type Cell = { X:int; Y:int; State:State }
-
-type Response = | Die
-                | Survive
-                | Resurect
-
-let (|IsEqual|IsNotEqual|) (cell1, cell2) =
-
-    if cell1.X <> cell2.X || cell1.Y <> cell2.Y 
-    then IsNotEqual
-    else IsEqual
-
-let (|BothPositive|NotBothPositive|) (v1, v2) =
-
-    if v1 >= 0 && v2 >= 0 
-    then BothPositive
-    else NotBothPositive
+open Types
+open ActivePatterns
     
 let isNeighbor cell1 cell2 =
 
@@ -32,7 +16,7 @@ let isNeighbor cell1 cell2 =
         | NotBothPositive -> isAbsNeighbor v2 v1
 
     match (cell1,cell2) with
-    | IsNotEqual -> isValueNeighbor cell1.X cell2.X
+    | NotEqual -> isValueNeighbor cell1.X cell2.X
                  && isValueNeighbor cell1.Y cell2.Y
     | IsEqual    -> false
 
@@ -70,6 +54,14 @@ let getNeighbors (coordinate:int*int) =
 
     [west; northWest; north; northEast; east; southEast; south; southWest]
 
+let setLive coordinate (grid:Map<(int * int), Cell>) =
+
+    match grid.TryFind coordinate with
+                        | Some cell -> match cell.State with
+                                        | Dead  -> grid |> setCell { cell with State=Alive }
+                                        | Alive -> grid
+                        | None      -> failwith "Cell doesn't exists"
+
 let setReaction coordinate grid:Map<(int * int), Cell> = 
 
     let x,y = coordinate
@@ -77,17 +69,13 @@ let setReaction coordinate grid:Map<(int * int), Cell> =
                            |> List.filter (fun coordinate -> grid |> getStatus coordinate = Alive)
                            |> List.length
     match count with
-    | count when count < 2 
-             ||  count > 3 -> grid |> setCell { X=x; Y=y; State=Dead }
-    | 3                    -> match grid.TryFind coordinate with
-                              | Some cell -> match cell.State with
-                                             | Dead -> grid |> setCell { cell with State=Alive }
-                                             | _    -> grid
-                              | None      -> failwith "Cell doesn't exists"
-    | _ -> grid
+    | ShouldDie  -> grid |> setCell { X=x; Y=y; State=Dead }
+    | ShouldLive -> grid |> setLive coordinate
+    | NoResponse -> grid
 
-let cycleThroughCells (grid:Map<(int * int), Cell>) =
+let getCells = Map.toSeq >> Seq.map snd >> Seq.toList
 
-    grid |> Map.toSeq
-         |> Seq.map snd
+let updateCells (grid:Map<(int * int), Cell>) =
+
+    grid |> getCells
          |> Seq.fold (fun grid c -> grid |> setReaction (c.X, c.Y)) grid

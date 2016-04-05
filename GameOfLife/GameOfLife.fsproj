@@ -54,7 +54,9 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="Model.fs" />
+    <Compile Include="Types.fs" />
+    <Compile Include="ActivePatterns.fs" />
+    <Compile Include="Behavior.fs" />
     <Compile Include="Tests.fs" />
     <None Include="Script.fsx" />
     <Content Include="packages.config" />

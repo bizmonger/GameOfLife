@@ -2,6 +2,7 @@
 open System.Windows.Data
 open Model
 open System.Windows.Media
+open Types
  
 type StateToBrushConverter() =
     interface IValueConverter with

@@ -3,6 +3,7 @@
 open FsUnit
 open NUnit.Framework
 open Model
+open Types
 
 [<Test>]
 let ``cells sharing x-coordinate are neighbors``() =
