@@ -2,7 +2,7 @@
 
 open FsUnit
 open NUnit.Framework
-open Model
+open Functions
 open Types
 
 [<Test>]

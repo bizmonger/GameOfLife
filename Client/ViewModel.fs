@@ -3,7 +3,7 @@
 open UILogic
 open UILogic.DataBinding
 open UILogic.Interaction
-open Model
+open Functions
 open System
 open System.Windows.Input
 open System.Collections.ObjectModel

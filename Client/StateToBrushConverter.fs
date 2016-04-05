@@ -1,6 +1,6 @@
 ﻿namespace Client
 open System.Windows.Data
-open Model
+open Functions
 open System.Windows.Media
 open Types
  

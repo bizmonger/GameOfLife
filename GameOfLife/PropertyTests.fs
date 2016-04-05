@@ -2,7 +2,7 @@
 
 open FsCheck
 open FsCheck.Xunit
-open Model
+open Functions
 
 [<Xunit.Fact>]
 let ``cell can't have more than eight neighbors`` () = 
