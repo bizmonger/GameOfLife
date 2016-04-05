@@ -70,16 +70,6 @@ let getNeighbors (coordinate:int*int) =
 
     [west; northWest; north; northEast; east; southEast; south; southWest]
 
-let createTimer timerInterval eventHandler =
-
-    let timer = new System.Timers.Timer(float timerInterval)
-    timer.AutoReset <- true
-    timer.Elapsed.Add eventHandler
-
-    async { timer.Start()
-            do! Async.Sleep 500
-            timer.Stop() }
-
 let setReaction coordinate grid:Map<(int * int), Cell> = 
 
     let x,y = coordinate
